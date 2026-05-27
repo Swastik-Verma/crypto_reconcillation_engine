@@ -10,7 +10,10 @@ const router = express.Router();
 
 router.post(
   "/ingest",
-  upload.single("file"),
+  upload.fields([
+    { name: "userFile", maxCount: 1 },
+    { name: "exchangeFile", maxCount: 1 },
+  ]),
   ingestTransactions
 );
 

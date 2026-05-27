@@ -17,6 +17,6 @@ app.use("/api", ingestionRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-app.listenerCount(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
