@@ -1,4 +1,4 @@
-const { DECMIMAL_PRECISION } = require("../config/constants");
+const { DECMIMAL_PRECISION } = require("./constants");
 
 const normalizeDecimal = (value) => {
     if(
