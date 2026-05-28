@@ -11,7 +11,7 @@ const normalizeDecimal = require("../utils/normalizeDecimal");
 
 const validateTimestamp = require("../utils/validateTimestamp");
 
-const processCSV = async (filePath,source) => {
+const processCSV = async (filePath,source,runId) => {
   return new Promise((resolve, reject) => {
 
     const rows = [];
@@ -20,7 +20,7 @@ const processCSV = async (filePath,source) => {
 
       .pipe(csv())
 
-      .on("data", (row) => {
+      .on("data", async (row) => {
 
         const timestamp =
           row.timestamp || row.Timestamp;
@@ -77,7 +77,7 @@ const processCSV = async (filePath,source) => {
 
           sourceTransactionId: transactionId,
 
-          runId: "temporary_run_id",
+          runId: runId,
 
           rawRow: row,
 
@@ -119,6 +119,12 @@ const processCSV = async (filePath,source) => {
         };
 
         rows.push(normalizedTransaction);
+
+        await Transaction.create(
+          normalizedTransaction
+        );
+
+        Transaction.create(normalizedTransaction);
       })
 
       .on("end", () => {

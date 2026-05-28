@@ -10,7 +10,7 @@ const ingestionRunSchema = new mongoose.Schema(
 
     source: {
       type: String,
-      enum: ["USER", "EXCHANGE"],
+      enum: ["USER", "EXCHANGE", "BOTH"],
       required: true,
     },
 
