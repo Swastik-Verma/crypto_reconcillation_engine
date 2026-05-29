@@ -123,8 +123,6 @@ const processCSV = async (filePath,source,runId) => {
         await Transaction.create(
           normalizedTransaction
         );
-
-        Transaction.create(normalizedTransaction);
       })
 
       .on("end", () => {
